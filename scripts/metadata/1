@@ -1,0 +1,12 @@
+{ 
+  "id": "1",
+  "name": "Paraporo #1",
+  "image": "ipfs://QmRZwhrjnRe4tG1vEibber73qZXoeTxuk5CTzq7YeJW32k/unrevealed.mp4",
+  "description": "Leave the drab reality and enter the world of Paraporo. Paraporo is home to 5,555 generative arts where colors reign supreme.",
+  "attributes": [
+    { 
+      "trait_type": "Status",
+      "value": "Unrevealed"
+    }
+  ]
+}

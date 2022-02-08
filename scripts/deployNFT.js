@@ -25,7 +25,7 @@ async function main() {
   console.log("----------")
   console.log("Network :", network.name);
   console.log("----------")
-  console.log(process.env.COLLECTION_NAME,"contract deployed to:", NFTContract.address, "Dont forget to add it to .env");
+  console.log(process.env.COLLECTION_NAME, "contract deployed to:", NFTContract.address, "Dont forget to add it to .env");
   console.log("----------")
 
 
@@ -51,15 +51,17 @@ async function main() {
     console.log("Proxy Registry Address set to: rinkeby", proxyRegistyAddress);
   if (proxyRegistyAddress == mainnetProxy)
     console.log("Proxy Registry Address set to: mainnet", proxyRegistyAddress);
-    console.log("----------")
+  console.log("----------")
 
 
   // -> Set Presale Start and End
-  const start = parseInt((Date.now()/10).toFixed(0));
+  const start = parseInt((Date.now() / 10).toFixed(0));
   const end = start + 5000000000000;
   await NFTContract.setPreSalesTime(start, end);
   console.log("PreSalesTime set to:", new Date(start), new Date(end));
   console.log("----------")
+
+  // -> Set tokenURI base
 
 }
 
@@ -71,3 +73,16 @@ main()
     console.error(error);
     process.exit(1);
   });
+
+let meta = { 
+  "id": "1",
+  "name": "Paraporo #1",
+  "image": "ipfs://QmRZwhrjnRe4tG1vEibber73qZXoeTxuk5CTzq7YeJW32k/unrevealed.mp4",
+  "description": "Leave the drab reality and enter the world of Paraporo. Paraporo is home to 5,555 generative arts where colors reign supreme.",
+  "attributes": [
+    { 
+      "trait_type": "Status",
+      "value": "Unrevealed"
+    }
+  ]
+}
