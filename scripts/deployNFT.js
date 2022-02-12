@@ -5,6 +5,7 @@
 // Runtime Environment's members available in the global scope.
 const { network } = require("hardhat");
 const hre = require("hardhat");
+
 const dotenv = require("dotenv")
 dotenv.config()
 
@@ -16,10 +17,20 @@ async function main() {
   // manually to make sure everything is compiled
   await hre.run('compile');
 
-  // We get the contract to deploy
+  console.log("Network : ", network.name);
 
+  
+  const [deployer] = await ethers.getSigners();
+  console.log("Account "+(deployer.address)+" balance:", (await deployer.getBalance()).toString());
+
+  // We get the contract to deploy
+  if (!process.env.GO)
+  {
+    console.log("Add GO=1 before the command to continue the deployment");
+    process.exit()
+  }
   // -> Deploy Contract:
-  const NFTContractFactory = await hre.ethers.getContractFactory(process.env.COLLECTION_NAME);
+  const NFTContractFactory = await hre.ethers.getContractFactory(process.env.COLLECTION_NAME, deployer);
   const NFTContract = await NFTContractFactory.deploy();
   await NFTContract.deployed();
   console.log("----------")
@@ -43,7 +54,9 @@ async function main() {
   // mainnet: 0xa5409ec958c83c3f309868babaca7c86dcb077c1
   const rinkebyProxy = "0xf57b2c51ded3a29e6891aba85459d600256cf317" // <-
   const mainnetProxy = "0xa5409ec958c83c3f309868babaca7c86dcb077c1" // <-
-  const proxyRegistyAddress = mainnetProxy; // <- Edit Here
+
+  const proxyRegistyAddress = rinkebyProxy; // <- Edit Here
+
   await NFTContract.setWhitelistSigner(
     proxyRegistyAddress
   );
@@ -62,7 +75,10 @@ async function main() {
   console.log("----------")
 
   // -> Set tokenURI base
-
+  const uri = "ipfs://"+process.env.IPFS_HASH+"/";
+  await NFTContract.setBaseURI(uri);
+  console.log("Base URI set to:", uri);
+  console.log("----------")
 }
 
 // We recommend this pattern to be able to use async/await everywhere
