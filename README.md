@@ -6,10 +6,10 @@
 - `COLLECTION_NAME`: Same as contract name
 - `WHITELIST_SIGNER` keys (required for whitelist)
 
-## 2 - Run scripts in order
+## 2 - Run scripts in order (replace rinkeby with network name)
 
 ```
-    npx hardhat run --network scripts/1_upload_metadata.js
+    npx hardhat run --network rinkeby scripts/1_upload_metadata.js
 
     npx hardhat run --network rinkeby scripts/2_deploy_contract.js
 
