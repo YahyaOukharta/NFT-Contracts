@@ -6,6 +6,8 @@
 const { network } = require("hardhat");
 const hre = require("hardhat");
 
+const deployed = require("../deployed.json");
+
 const dotenv = require("dotenv")
 dotenv.config()
 
@@ -17,37 +19,30 @@ async function main() {
   // manually to make sure everything is compiled
   await hre.run('compile');
 
-  console.log("Network : ", network.name);
+  console.log("3 | MetadataURI and Opensea | Network : ", network.name);
+  console.log("----------")
 
-  
+  // -> Get Signer
   const [deployer] = await ethers.getSigners();
   console.log("Account "+(deployer.address)+" balance:", (await deployer.getBalance()).toString());
+  console.log("----------")
 
-  // We get the contract to deploy
+
   if (!process.env.GO)
   {
     console.log("Add GO=1 before the command to continue the deployment");
     process.exit()
   }
-  // -> Deploy Contract:
-  const NFTContractFactory = await hre.ethers.getContractFactory(process.env.COLLECTION_NAME, deployer);
-  const NFTContract = await NFTContractFactory.deploy();
-  await NFTContract.deployed();
+
   console.log("----------")
   console.log("Network :", network.name);
   console.log("----------")
-  console.log(process.env.COLLECTION_NAME, "contract deployed to:", NFTContract.address, "Dont forget to add it to .env");
+
+  // -> Deploy Contract:
+  const NFTContractFactory = await hre.ethers.getContractFactory(process.env.COLLECTION_NAME, deployer); 
+  const NFTContract = await NFTContractFactory.attach(deployed.address)
+  console.log(process.env.COLLECTION_NAME, "contract deployed to:", NFTContract.address);
   console.log("----------")
-
-
-  // -> Set Whitelist signer address:
-  const whitelistSigner = process.env.WHITELIST_SIGNER;
-  await NFTContract.setWhitelistSigner(
-    whitelistSigner
-  );
-  console.log("Whitelist Signer set to:", whitelistSigner);
-  console.log("----------")
-
 
   // -> Set Proxy Registry Address for OpenSea:
   // rinkeby: 0xf57b2c51ded3a29e6891aba85459d600256cf317
@@ -55,9 +50,12 @@ async function main() {
   const rinkebyProxy = "0xf57b2c51ded3a29e6891aba85459d600256cf317" // <-
   const mainnetProxy = "0xa5409ec958c83c3f309868babaca7c86dcb077c1" // <-
 
-  const proxyRegistyAddress = rinkebyProxy; // <- Edit Here
+  const proxyRegistyAddress = 
+    network.name === "rinkeby"?
+     rinkebyProxy :
+     mainnetProxy;
 
-  await NFTContract.setWhitelistSigner(
+  await NFTContract.setProxyRegistryAddress(
     proxyRegistyAddress
   );
   if (proxyRegistyAddress == rinkebyProxy)
@@ -66,19 +64,16 @@ async function main() {
     console.log("Proxy Registry Address set to: mainnet", proxyRegistyAddress);
   console.log("----------")
 
-
-  // -> Set Presale Start and End
-  const start = parseInt((Date.now() / 10).toFixed(0));
-  const end = start + 5000000000000;
-  await NFTContract.setPreSalesTime(start, end);
-  console.log("PreSalesTime set to:", new Date(start), new Date(end));
-  console.log("----------")
-
   // -> Set tokenURI base
-  const uri = "ipfs://"+process.env.IPFS_HASH+"/";
+  let uri = "ipfs://"+deployed.ipfs+"/";
   await NFTContract.setBaseURI(uri);
   console.log("Base URI set to:", uri);
   console.log("----------")
+
+  // -> set contractURI
+    // set manually on opensea
+  //
+
 }
 
 // We recommend this pattern to be able to use async/await everywhere
@@ -90,15 +85,3 @@ main()
     process.exit(1);
   });
 
-let meta = { 
-  "id": "1",
-  "name": "Paraporo #1",
-  "image": "ipfs://QmRZwhrjnRe4tG1vEibber73qZXoeTxuk5CTzq7YeJW32k/unrevealed.mp4",
-  "description": "Leave the drab reality and enter the world of Paraporo. Paraporo is home to 5,555 generative arts where colors reign supreme.",
-  "attributes": [
-    { 
-      "trait_type": "Status",
-      "value": "Unrevealed"
-    }
-  ]
-}

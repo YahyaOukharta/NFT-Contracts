@@ -8,6 +8,8 @@ function createIpfs() {
 }
 
 function uploadFolder(ipfs, pathToFolder) {
+  console.log("1 | Upload metadata to ipfs");
+
   console.log(`Uploading "${pathToFolder}" to ipfs ...`);
   ipfs.util.addFromFs(pathToFolder, { recursive: true }, (err, result) => {
     if (err) {
@@ -18,6 +20,8 @@ function uploadFolder(ipfs, pathToFolder) {
     console.log(`Uploaded ${result.length} file(s) to ipfs.`);
     console.log(`Folder hash : "${hash}"`);
 
+    const fs = require('fs');
+    fs.writeFileSync('./deployed.json', JSON.stringify({ipfs:hash},null,2));
   });
 }
 
@@ -28,3 +32,4 @@ try {
 } catch (err) {
   console.error(`Failed to upload "${buildDir}"`, err);
 }
+

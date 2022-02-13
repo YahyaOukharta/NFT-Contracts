@@ -8,7 +8,7 @@ import "./Whitelist.sol";
 import "./ERC721Opensea.sol";
 import "./Withdrawable.sol";
 
-contract Karafuru is
+contract Paraporo is
     Ownable,
     EIP712,
     PreSalesActivation,
@@ -22,8 +22,8 @@ contract Karafuru is
     uint256 public constant PRESALES_MAX_QTY = 3500;
     uint256 public constant SALES_MAX_QTY = TOTAL_MAX_QTY - GIFT_MAX_QTY;
     uint256 public constant MAX_QTY_PER_MINTER = 2;
-    uint256 public constant PRE_SALES_PRICE = 0.2 ether;
-    uint256 public constant PUBLIC_SALES_START_PRICE = 0.5 ether;
+    uint256 public constant PRE_SALES_PRICE = 0.1 ether;
+    uint256 public constant PUBLIC_SALES_START_PRICE = 0.3 ether;
 
     uint256 public constant priceDropDuration = 600; // 10 mins
     uint256 public constant priceDropAmount = 0.025 ether;
@@ -36,7 +36,7 @@ contract Karafuru is
     uint256 public publicSalesMintedQty = 0;
     uint256 public giftedQty = 0;
 
-    constructor() ERC721("Karafuru", "KARAFURU") Whitelist("Karafuru", "1") {}
+    constructor() ERC721("Paraporo", "PARAPORO") Whitelist("Paraporo", "1") {}
 
     function getPrice() public view returns (uint256) {
         // Public sales
