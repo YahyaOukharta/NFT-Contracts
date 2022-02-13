@@ -30,4 +30,5 @@
 - Public Sale
 - Fix timestamp
 - Withdraw to shareholders
-
+- Whitelist signer api
+- frontend
