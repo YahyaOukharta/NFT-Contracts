@@ -27,8 +27,6 @@
 ## 3 - Todo 
 
 - Reveal 
-- Public Sale
-- Fix timestamp
 - Withdraw to shareholders
 - Whitelist signer api
 - frontend
