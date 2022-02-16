@@ -65,7 +65,7 @@ async function main() {
   console.log("----------")
 
   // -> Set tokenURI base
-  let uri = "ipfs://"+deployed.ipfs+"/";
+  let uri = "ipfs://"+deployed.ipfsMetadata+"/";
   await NFTContract.setBaseURI(uri);
   console.log("Base URI set to:", uri);
   console.log("----------")

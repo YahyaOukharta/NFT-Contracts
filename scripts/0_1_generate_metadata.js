@@ -58,7 +58,17 @@ let tokenTraits =
         ]
       }
 
+      
 const dotenv = require("dotenv")
-  dotenv.config()
+dotenv.config()
 
-let 
+const deployed = require("../deployed.json");
+
+
+const genUnrevealed = async ()=>
+{
+    let supply = process.env.MAX_SUPPLY;
+    let unrevealed 
+
+    
+}

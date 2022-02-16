@@ -1,16 +1,15 @@
 const path = require('path');
 const IPFS = require('ipfs-api');
 
+
 function createIpfs() {
   return IPFS('ipfs.infura.io', 5001, {
     protocol: 'https'
   });
 }
 
-const deployed = require("../deployed.json");
-
 function uploadFolder(ipfs, pathToFolder) {
-  console.log("1 | Upload metadata to ipfs");
+  console.log("0_0 | Upload images to ipfs");
 
   console.log(`Uploading "${pathToFolder}" to ipfs ...`);
   ipfs.util.addFromFs(pathToFolder, { recursive: true }, (err, result) => {
@@ -23,11 +22,11 @@ function uploadFolder(ipfs, pathToFolder) {
     console.log(`Folder hash : "${hash}"`);
 
     const fs = require('fs');
-    fs.writeFileSync('./deployed.json', JSON.stringify({...deployed, ipfsMetadata : hash}, null, 2));
+    fs.writeFileSync('./deployed.json', JSON.stringify({ipfsAssets:hash},null,2));
   });
 }
 
-const buildDir = path.resolve(__dirname, '../scripts/metadata');
+const buildDir = path.resolve(__dirname, '../scripts/assets');
 try {
   const ipfs = createIpfs();
   uploadFolder(ipfs, buildDir);
