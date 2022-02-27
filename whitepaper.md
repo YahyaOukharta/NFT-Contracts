@@ -17,15 +17,13 @@
 
 - The $GOAT token grants holder of NFT access to the $GOAT DAO voting privileges and discounts on the exclusive merch.
 
-## What is the $GOATS DAO ?
+### What is the $GOATS DAO ?
 
 - The $GOATS DAO is where, in a completely decentralized and transparent way, The Mutant Goats assemble to make decisions collectively regarding the $GOATS TREASURY
 
-## What is the $GOATS TREASURY ?
+### What is the $GOATS TREASURY ?
 
 - The $GOATS TREASURY is the Mutant Goats Collective Wallet
 - It contains initially a portion of the initial minting cost
 - Mutant Goats Holders can act upon this wallet by creating proposals and voting on the $GOATS DAO.
 - The Mutant Goats NFT holders can trade NFTs, and share the profits, fund new projects, etc ; all that through voting on the $GOATS DAO
-
-
