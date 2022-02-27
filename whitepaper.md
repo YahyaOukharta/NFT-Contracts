@@ -29,3 +29,13 @@
 - The Mutant Goats NFT holders can trade NFTs, and share the profits, fund new projects, etc ; all that through voting on the $GOATS DAO
 
 
+## Timeline
+
+### 1. 4888 Mutant Goats appear and want to take over the metaverse
+    - Idea : Flipping contest, to fill the $GOAT TREASURY with opeasea royalties
+
+### 2. $GOAT TOKEN APPEARS, holders can earn it by staking their nfts, and use it to buy exclusive merch or trade it for ETH
+
+### 2. $GOATS DAO welcomes the mutant goats to act upon the $GOAT TREASURY
+
+### 3. The Mutant $GOATS land on the moon safely
