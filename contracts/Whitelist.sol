@@ -4,7 +4,6 @@ pragma solidity >=0.4.22 <0.9.0;
 import "./access/Ownable.sol";
 import "./utils/cryptography/draft-EIP712.sol";
 import "./utils/cryptography/ECDSA.sol";
-import "hardhat/console.sol";
 
 contract Whitelist is Ownable, EIP712 {
     bytes32 public constant WHITELIST_TYPEHASH =

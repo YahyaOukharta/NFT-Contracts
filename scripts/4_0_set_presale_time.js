@@ -40,9 +40,9 @@ async function main() {
   console.log("Whitelist Signer set to:", whitelistSigner);
   console.log("----------")
 
-  // -> Set Presale Start and End !!!!!!
-  const start = parseInt((new Date('2022.02.16').getTime() / 1000).toFixed(0))
-  const end = parseInt((new Date('2022.02.18').getTime() / 1000).toFixed(0))
+  // -> Set Presale Start and End !!!!!! https://epochconverter.com
+  const start = 1646243626;
+  const end = 1646247226
   await NFTContract.setPreSalesTime(start, end);
   console.log("PreSalesTime set to:", new Date(start*1000), new Date(end*1000));
   console.log("----------")

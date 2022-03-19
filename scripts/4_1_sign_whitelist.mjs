@@ -45,9 +45,9 @@ const signWhitelist = async (buyer, signedQty, nonce) =>
 
 const main = async () => {
   
-  const buyer = "0x584d43e09681c19321ea94a28bd5ded8822f76b3";
-  const signedQty = 2;
-  const nonce = 2;
+  const buyer = "0x584d43E09681c19321Ea94a28Bd5Ded8822f76b3";
+  const signedQty = 3500;
+  const nonce = 1;
 
   const sig = await signWhitelist(buyer, signedQty, nonce);
   console.log("   sig : " + sig);

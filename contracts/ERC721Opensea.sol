@@ -2,7 +2,7 @@
 pragma solidity >=0.4.22 <0.9.0;
 
 import "./access/Ownable.sol";
-import "./token/ERC721/extensions/ERC721Enumerable.sol";
+import "./ERC721A.sol";
 
 contract OwnableDelegateProxy {}
 
@@ -13,7 +13,7 @@ contract ProxyRegistry {
     mapping(address => OwnableDelegateProxy) public proxies;
 }
 
-abstract contract ERC721Opensea is Ownable, ERC721Enumerable {
+abstract contract ERC721Opensea is Ownable, ERC721A {
     string private _contractURI;
     string private _tokenBaseURI;
     address proxyRegistryAddress;
@@ -64,7 +64,7 @@ abstract contract ERC721Opensea is Ownable, ERC721Enumerable {
     function _baseURI()
         internal
         view
-        override(ERC721)
+        override(ERC721A)
         returns (string memory)
     {
         return _tokenBaseURI;
