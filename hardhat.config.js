@@ -1,4 +1,5 @@
 require("@nomiclabs/hardhat-waffle");
+require("@nomiclabs/hardhat-etherscan");
 
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
@@ -18,7 +19,11 @@ task("accounts", "Prints the list of accounts", async () => {
  */
 const mainnetGwei = 60;
 module.exports = {
-  
+  etherscan: {
+    // Your API key for Etherscan
+    // Obtain one at https://etherscan.io/
+    apiKey: "6V6M98VYDGZBJVEWQNJ85B9262AMFQ5115"
+  },
   networks: {
     localhost: {
       url: "http://localhost:8545",

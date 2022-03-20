@@ -117,7 +117,7 @@ contract BoredAzuki is
         );
 
         mintedForAirdropQty += amount;
-        _safeMint(msg.sender, 1);
+        _safeMint(msg.sender, amount);
     }
     
     // https://github.com/ProjectOpenSea/opensea-creatures/blob/74e24b99471380d148057d5c93115dfaf9a1fa9e/migrations/2_deploy_contracts.js#L29

@@ -9,7 +9,7 @@ dotenv.config()
 async function main() {
   await hre.run('compile');
 
-  console.log("2 | Set Presale Time");
+  console.log("3 | Set Public Time");
   console.log("----------")
   console.log("Network :", network.name);
   console.log("----------")
@@ -31,19 +31,11 @@ async function main() {
   console.log(process.env.COLLECTION_NAME, "contract deployed to:", NFTContract.address);
   console.log("----------")
 
-  // -> Set Whitelist signer address:
-  const whitelistSigner = process.env.WHITELIST_SIGNER;
-  await NFTContract.setWhitelistSigner(
-    whitelistSigner
-  );
-  console.log("Whitelist Signer set to:", whitelistSigner);
-  console.log("----------")
-
-  // -> Set Presale Start and End !!!!!! https://epochconverter.com
-  const start = 1648598400; // Thursday 30 March 2022 00:00:00
-  const end =   1648684800; // Thursday 31 March 2022 00:00:00
-  await NFTContract.setPreSalesTime(start, end);
-  console.log("PreSalesTime set to:", new Date(start*1000), new Date(end*1000));
+  // -> Mint for Airdrops !!!!!!
+  const amount = await NFTContract.AIRDROP_MINT_MAX_QTY(); 
+  console.log("AIRDROP_MINT_MAX_QTY = " + amount);
+  await NFTContract.mintAirdrop(amount);
+  console.log("Minted "+amount+" "+process.env.COLLECTION_NAME+"s to:", deployer.address);
   console.log("----------")
 }
 

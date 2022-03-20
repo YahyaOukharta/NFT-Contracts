@@ -16,9 +16,7 @@ async function emptyFolder(path) {
     }
   }
 async function createIpfs() {
-  return IPFS('localhost', 5001, {
-    protocol: 'http'
-  });
+  return IPFS();
 }
 
 async function uploadArt(ipfs, pathToFolder) {
@@ -63,7 +61,7 @@ async function main(){
 
     const maxSupply = 4888;
     const collectionName = "Bored Azuki";
-
+    const tokensDescription = "Leave the drab reality and enter the world of "+collectionName+". "+collectionName+" is home to "+maxSupply+" generative arts where colors reign supreme.";
     await emptyFolder(metadataFolder)
     for (let i = 1; i <= maxSupply; ++i){
         let data = 
@@ -71,7 +69,7 @@ async function main(){
             "id": i,
             "name": collectionName+" #"+i,
             "image": "ipfs://"+artHash+"/unrevealed.png", // unrevealed
-            "description": "Leave the drab reality and enter the world of "+collectionName+". "+collectionName+" is home to "+maxSupply+" generative arts where colors reign supreme.",
+            "description": tokensDescription,
             "attributes": [
                 { 
                     "trait_type": "Status",
@@ -87,6 +85,7 @@ async function main(){
 
     fs.writeFileSync('./deployed.json', JSON.stringify({ipfsArt:artHash, ipfsMetadata : metadataHash},null,2));
     
+    //delete the 4xxx metadata files
     await emptyFolder(metadataFolder)
 }
 
