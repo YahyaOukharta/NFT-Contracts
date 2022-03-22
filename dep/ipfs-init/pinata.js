@@ -44,7 +44,6 @@ async function uploadMetadata(ipfs, pathToFolder) {
     console.log(`Metadata folder hash : "${hash}"`);
     console.log()
 
-
     return hash;
 }
 
@@ -64,7 +63,7 @@ pinata.testAuthentication().then(async (result) => {
       // generate metadata
   
       const maxSupply = 4888;
-      const collectionName = "Bored Azuki";
+      const collectionName = "Bored Azuki 2";
       const tokensDescription = "Leave the drab reality and enter the world of "+collectionName+". "+collectionName+" is home to "+maxSupply+" generative arts where colors reign supreme.";
       await emptyFolder(metadataFolder)
       for (let i = 1; i <= maxSupply; ++i){
