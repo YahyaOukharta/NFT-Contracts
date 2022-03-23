@@ -63,7 +63,7 @@ pinata.testAuthentication().then(async (result) => {
       // generate metadata
   
       const maxSupply = 4888;
-      const collectionName = "Bored Azuki 2";
+      const collectionName = "Bored FARUO 2";
       const tokensDescription = "Leave the drab reality and enter the world of "+collectionName+". "+collectionName+" is home to "+maxSupply+" generative arts where colors reign supreme.";
       await emptyFolder(metadataFolder)
       for (let i = 1; i <= maxSupply; ++i){
@@ -71,7 +71,7 @@ pinata.testAuthentication().then(async (result) => {
           {
               "id": i,
               "name": collectionName+" #"+i,
-              "image": "ipfs://"+artHash+"/unrevealed.png", // unrevealed
+              "image": "ipfs://"+artHash+"/unrevealed.gif", // unrevealed
               "description": tokensDescription,
               "attributes": [
                   { 

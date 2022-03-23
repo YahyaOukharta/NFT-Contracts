@@ -40,8 +40,10 @@ async function main() {
   console.log("----------")
 
   // -> Set Presale Start and End !!!!!! https://epochconverter.com
-  const start = 1648598400; // Thursday 30 March 2022 00:00:00
-  const end =   1648684800; // Thursday 31 March 2022 00:00:00
+  // const start = 1648598400; // Thursday 30 March 2022 00:00:00
+  // const end =   1648684800; // Thursday 31 March 2022 00:00:00
+  const start = 1647990036
+  const end = 1647995536
   await NFTContract.setPreSalesTime(start, end);
   console.log("PreSalesTime set to:", new Date(start*1000), new Date(end*1000));
   console.log("----------")
