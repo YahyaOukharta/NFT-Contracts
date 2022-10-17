@@ -23,10 +23,3 @@
 
     npx hardhat run --network rinkeby scripts/6_withdraw.js
 ```
-
-## 3 - Todo 
-
-- Reveal 
-- Withdraw to shareholders
-- Whitelist signer api
-- frontend
